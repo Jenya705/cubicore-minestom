@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "7.0.0"
+}
+
+group 'com.github.jenya705'
+version '1.0'
+
+shadowJar {
+    if (project.hasProperty("dir")) {
+        destinationDir(new File((String) project.getProperties().get("dir")))
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+    maven { url 'https://repo.spongepowered.org/maven' }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    compileOnly 'com.github.Minestom:Minestom:master-SNAPSHOT'
+}
+
+test {
+    useJUnitPlatform()
+}
